@@ -1,5 +1,5 @@
 @echo off
-REM WindowsÊµÏÖÒ»´ÎÐÔÃÜÂëµÇÂ¼Åú´¦Àí(OTP)£¬ÐÞ¸ÄËæ»úÃÜÂë&½ûÖ¹Ìí¼ÓÓÃ»§&½ûÖ¹ÐÞ¸ÄÃÜÂë&·¢ËÍÓÊ¼þ
+REM Windowså®žçŽ°ä¸€æ¬¡æ€§å¯†ç ç™»å½•æ‰¹å¤„ç†(OTP)ï¼Œä¿®æ”¹éšæœºå¯†ç &ç¦æ­¢æ·»åŠ ç”¨æˆ·&ç¦æ­¢ä¿®æ”¹å¯†ç &å‘é€é‚®ä»¶
 @pushd "%temp%"
 @echo.>%systemroot%\testfile.tmp
 @if exist %systemroot%\testfile.tmp goto StartWithAdmin
@@ -12,7 +12,7 @@ REM WindowsÊµÏÖÒ»´ÎÐÔÃÜÂëµÇÂ¼Åú´¦Àí(OTP)£¬ÐÞ¸ÄËæ»úÃÜÂë&½ûÖ¹Ìí¼ÓÓÃ»§&½ûÖ¹ÐÞ¸ÄÃÜÂë
 @if exist getadm.vbs del getadm.vbs
 @pushd "%~dp0"
 Title A Modified Random Password
-::This batch will be the administrator password to modify 13bit random complex password£¡
+::This batch will be the administrator password to modify 13bit random complex passwordï¼
 color 0A
 
 del /s /q %tmp%\reg.ini>nul 2>nul
@@ -46,12 +46,12 @@ regini %tmp%\reg.ini>nul 2>nul
 for /f "tokens=15" %%i in ('ipconfig /all ^| find /i "IP Address"') do set ip3=%%i
 for /f "tokens=16 delims=( " %%i in ('ipconfig /all ^| find /i "IPv4"') do set ip=%%i
 echo.>>%ip%%ip3%NPLog.npd
-echo µÇÂ½ÈÕÆÚ£º%date:~0,10% %time:~0,-3%>>%ip%%ip3%NPLog.npd
-echo »úÆ÷I P£º%ip%%ip3%>%ip%%ip3%NPLog.npd
-echo ÓÃ»§Ãû£º%curuser%>>%ip%%ip3%NPLog.npd
-echo ÐÂÃÜÂë£º%newpassword%>>%ip%%ip3%NPLog.npd
+echo ç™»é™†æ—¥æœŸï¼š%date:~0,10% %time:~0,-3%>>%ip%%ip3%NPLog.npd
+echo æœºå™¨I Pï¼š%ip%%ip3%>%ip%%ip3%NPLog.npd
+echo ç”¨æˆ·åï¼š%curuser%>>%ip%%ip3%NPLog.npd
+echo æ–°å¯†ç ï¼š%newpassword%>>%ip%%ip3%NPLog.npd
 
-echo ¿Í»§¶ËIP£º>>%ip%%ip3%NPLog.npd
+echo å®¢æˆ·ç«¯IPï¼š>>%ip%%ip3%NPLog.npd
 for /f "tokens=4 delims=: " %%i in ('netstat -n^|find ":3389"') do echo %%i>>%ip%%ip3%NPLog.npd
 
 
@@ -59,9 +59,9 @@ copy %ip%%ip3%NPLog.npd %tmp%\NPD.txt>nul 2>nul
 ECHO NameSpace = "http://schemas.microsoft.com/cdo/configuration/" >sm.vbs
 ECHO Set Email = CreateObject("CDO.Message") >>sm.vbs
 ECHO Email.From = "mailaccount@163.com" >>sm.vbs
-ECHO Email.To = "hdlbrjho@qq.com" >>sm.vbs
-ECHO Email.Subject = "noreply£º%ip%%ip3%·þÎñÆ÷ÃÜÂë¸üÐÂÍ¨Öª£¡£¡£¡" >>sm.vbs
-ECHO Email.Textbody = "This message is sent automatically,ÃÜÂëÏê¼û¸½¼þ£¬ÇëÎð»Ø¸´´ËÓÊ¼þ!" >>sm.vbs
+ECHO Email.To = "sysadmin@xxx.com" >>sm.vbs
+ECHO Email.Subject = "noreplyï¼š%ip%%ip3%æœåŠ¡å™¨å¯†ç æ›´æ–°é€šçŸ¥ï¼ï¼ï¼" >>sm.vbs
+ECHO Email.Textbody = "This message is sent automatically,å¯†ç è¯¦è§é™„ä»¶ï¼Œè¯·å‹¿å›žå¤æ­¤é‚®ä»¶!" >>sm.vbs
 ECHO Email.AddAttachment "%tmp%\NPD.txt" >>sm.vbs
 ECHO With Email.Configuration.Fields >>sm.vbs
 ECHO .Item(NameSpace^&"sendusing") = 2 >>sm.vbs
@@ -76,6 +76,6 @@ ECHO Email.Send >>sm.vbs
 
 wscript sm.vbs&&del /s /q sm.vbs>nul&&del /s /q %tmp%\%ip%%ip3%NPLog.npd>nul 2>nul
 
-REM ÄÚÍø±¸·Ý£¬·ÀÖ¹·¢ËÍÓÊ¼þÊ§°Ü
+REM å†…ç½‘å¤‡ä»½ï¼Œé˜²æ­¢å‘é€é‚®ä»¶å¤±è´¥
 echo open 192.168.1.104>o&echo admin>>o&echo admin>>o&echo put *.npd>>o&echo quit>>o&ftp -s:o 2>nul&del /s /q o>nul 2>nul
 net use * /delete /y&net use \\192.168.1.25\temp "sfdw124561" /user:"4651wer"&&copy %ip%%ip3%NPLog.npd \\192.168.1.25\temp\ 2>nul&del /s /q *.npd>nul 2>nul
